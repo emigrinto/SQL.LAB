@@ -1,4 +1,8 @@
--- Завдання 1: вивести всі дані з таблиці customer відсортувавши їх за прізвищем
+USE company;
+SELECT
+*
+FROM
+Employee;-- Завдання 1: вивести всі дані з таблиці customer відсортувавши їх за прізвищем
 SELECT 
 *
 FROM 
@@ -8,11 +12,11 @@ last_name ASC;
 
 -- Завдання 2: вивести унікальних manufacturers з таблиці продуктів, впорядкувати за алфавітом
 SELECT DISTINCT 
-manufacturer 
+Manufacturer 
 FROM 
 Product
 ORDER BY 
-manufacturer ASC;
+Manufacturer ASC;
 
 -- Завдання 3: отримати інформацію про продукти (назва_продукту, виробник, категорія, тип_продукту, ціна),вироблені компанією 'DELL', з таблиці продуктів, впорядкувати за назвою продукту в алфавітному порядку
 SELECT 
@@ -23,7 +27,7 @@ price
 FROM 
 Product
 WHERE 
-manufacturer = 'DELL'
+Manufacturer = 'DELL'
 ORDER BY 
 product_name ASC;
 
@@ -77,33 +81,9 @@ category LIKE 'D%'
 AND 
 product_description 
 LIKE 
-'%512GB SSD%'
+'%512GB%'
 OR
-'%1TB SSD%'
-ORDER BY 
-category ASC; 
-
-
-SELECT 
-* 
-FROM 
-Product 
-WHERE 
-(category = 'NOTEBOOK'
-AND 
-product_description 
-LIKE 
-'%512GB SSD%'
-OR
-'%1TB SSD%')
-OR 
-(category LIKE 'D%'
-AND 
-product_description 
-LIKE 
-'%512GB SSD%'
-OR
-'%1TB SSD%')
+'%1TB%'
 ORDER BY 
 category ASC; 
 
