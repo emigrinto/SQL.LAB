@@ -80,6 +80,17 @@ WHERE EXISTS (
     WHERE sub.manager_id = e.employee_id
 );
 
+-- list mangers, but using null istead of select 1
+SELECT * 
+FROM Employee e 
+WHERE EXISTS (
+    SELECT m.manager_id
+    FROM Employee m
+    WHERE m.manager_id = e.employee_id AND m.manager_id IS NOT NULL
+);
+
+
+
 
 -- deps with no employees
 SELECT department_name 
