@@ -75,18 +75,32 @@ WHERE amount = (SELECT MIN(amount) FROM Product);
 SELECT * 
 FROM Employee e 
 WHERE EXISTS (
-    SELECT 1 
-    FROM Employee sub 
-    WHERE sub.manager_id = e.employee_id
+    SELECT 1
+    FROM Employee m
+    WHERE m.manager_id = e.employee_id
+);
+-------------------------------------------------------------------------------------------------
+SELECT * 
+FROM Employee
+WHERE employee_id IN (
+    SELECT manager_id
+    FROM Employee
+    WHERE manager_id IS NOT NULL
+);
+-----------------------------------------------------------------------------------------------------
+SELECT 
+    e.employee_id,
+    CONCAT(e.first_name, ' ', e.last_name) AS "Man Nam",
+    d.department_name,
+    CONCAT(LOWER(e.first_name), '.', LOWER(e.last_name), '@company.com') AS "email"
+FROM Employee e
+JOIN Department d ON e.department_id = d.department_id
+WHERE e.employee_id IN (
+    SELECT DISTINCT manager_id
+    FROM Employee
+    WHERE manager_id IS NOT NULL
 );
 
--- list mangers, but using null istead of select 1
-SELECT * 
-FROM Employee e 
-WHERE EXISTS (
-    SELECT m.manager_id
-    FROM Employee m
-    WHERE m.manager_id = e.employee_id AND m.manager_id IS NOT NULL
 );
 
 
